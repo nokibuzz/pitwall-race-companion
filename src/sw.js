@@ -1,5 +1,5 @@
-const CACHE = 'pitwall-history-v4';
-const ASSETS = ['./', './index.html', './style.css', './race-theme.css', './simple.css', './history.css', './race-car.svg', './app.mjs', './calendar.mjs', './form.mjs', './review.mjs', './strategy.mjs', './calendar.json', './history.json', './form.json', './favicon.svg', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
+const CACHE = 'pitwall-history-v5';
+const ASSETS = ['./', './index.html', './style.css', './race-theme.css', './simple.css', './history.css', './race-car.svg', './app.mjs', './calendar.mjs', './form.mjs', './review.mjs', './strategy.mjs', './calendar.json', './history.json', './form.json', './favicon.svg', './favicon-32.png', './apple-touch-icon.png', './manifest.webmanifest', './flag-icon-192.png', './flag-icon-512.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
