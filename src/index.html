@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b0e">
+  <meta name="description" content="An independent race companion with a real F1 calendar, recorded race history and transparent pit strategy scenarios.">
+  <title>Pitwall — Race Companion</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./race-theme.css">
+  <link rel="stylesheet" href="./simple.css">
+  <link rel="stylesheet" href="./history.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Pitwall home"><img class="brand-icon" src="./favicon.svg" width="46" height="46" alt=""><span class="brand-name">PITWALL<small>RACE COMPANION</small></span></a>
+      <nav class="topbar-right" aria-label="Main navigation"><a href="#race-center" class="top-link">Race</a><a href="#history" class="top-link">Rewind</a><a href="#strategy" class="top-link" data-open-strategy>Strategy</a></nav>
+    </header>
+
+    <main id="main-content">
+      <section class="intro" aria-labelledby="hero-title">
+        <div class="intro-content"><p class="eyebrow"><span class="pulse" aria-hidden="true"></span> INDEPENDENT FAN PROJECT <span class="eyebrow-sep">/</span> 01</p><h1 id="hero-title">THE RACE,<br><em>MADE CLEAR.</em></h1><p class="intro-copy">Real races and drivers. Explore a recorded pit stop, change the decision, and see what the model suggests could have changed.</p><div class="hero-actions"><a class="hero-primary hero-link" href="#history">Explore race rewind <span aria-hidden="true">↓</span></a><a class="hero-strategy-link" href="#strategy" data-open-strategy>Try a strategy <span aria-hidden="true">↗</span></a></div></div>
+        <div class="intro-art"><span class="art-label">ORIGINAL SINGLE-SEATER CONCEPT</span><img src="./race-car.svg" alt="Original illustration of a red open-wheel racing car" width="1000" height="400"></div>
+      </section>
+
+      <section class="race-center" id="race-center" aria-labelledby="center-title">
+        <div class="center-heading"><div><span class="section-index">01 / THE WEEKEND</span><h2 id="center-title">What is next?</h2></div><span class="source-chip" id="calendar-status" role="status">CALENDAR · LOADING</span></div>
+        <div class="center-grid">
+          <article class="next-race panel" aria-labelledby="next-race-title"><div class="race-number" id="next-race-round">R--</div><div class="next-race-main"><span class="small-label">NEXT RACE</span><h3 id="next-race-title">Checking the calendar…</h3><p id="next-race-meta">Race date and time will appear in your time zone.</p><a id="next-race-link" href="https://www.formula1.com/en/racing/2026" target="_blank" rel="noopener noreferrer">Official calendar ↗</a></div><div class="session-list" id="race-session-list" aria-label="Race weekend session times"></div></article>
+          <article class="podium-card panel" id="podium" aria-labelledby="podium-title"><div class="podium-head"><div><span class="small-label">PRE-RACE FEATURE</span><h3 id="podium-title">Podium form watch</h3></div><span class="mock-chip">HEURISTIC</span></div><p class="podium-intro">Real drivers ranked from completed-race results and season points. This is an illustrative pick, not calibrated odds.</p><p class="prediction-for">For <strong id="prediction-race">the next Grand Prix</strong></p><ol class="podium-list" id="podium-list" aria-live="polite"><li>Loading current form…</li></ol><p class="podium-explainer" id="podium-explainer">Waiting for current standings.</p></article>
+        </div>
+        <details class="calendar-panel panel" id="calendar-panel"><summary>View full season calendar <span aria-hidden="true">↗</span></summary><p id="calendar-source">Calendar: <a href="https://api.jolpi.ca/docs/" target="_blank" rel="noopener noreferrer">Jolpica F1 API</a> · <a href="https://github.com/jolpica/jolpica-f1/blob/main/TERMS.md" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0 terms</a>. <span id="calendar-freshness">Loading…</span> Check official dates before travel or viewing.</p><div class="calendar-list" id="calendar-list" aria-live="polite">Loading the calendar…</div></details>
+      </section>
+
+      <section class="history-entry" id="history" aria-labelledby="history-title">
+        <div class="center-heading"><div><span class="section-index">02 / RACE REWIND</span><h2 id="history-title">Change a real decision.</h2></div><span class="source-chip">RECORDED DATA + MODEL</span></div>
+        <div class="history-layout">
+          <div class="history-controls panel">
+            <p class="history-intro">Choose a completed Grand Prix and a recorded pit stop. The positions and lap times are real; the alternative is a conditional calculation.</p>
+            <div class="history-field"><label for="history-race">Completed race</label><select id="history-race"></select></div>
+            <div class="history-field"><label for="history-stop">Driver and recorded stop</label><select id="history-stop"></select></div>
+            <div class="history-field"><label for="history-shift">Move the stop <output id="history-shift-output" for="history-shift">2 laps earlier</output></label><input id="history-shift" type="range" min="-5" max="5" step="1" value="-2"><div class="range-ends"><span>5 LAPS EARLIER</span><span>RECORDED</span><span>5 LAPS LATER</span></div></div>
+            <p class="history-source" id="history-source">Loading recorded race data…</p>
+          </div>
+          <div class="history-results">
+            <div class="history-cards"><article class="panel history-observed"><span class="small-label">RECORDED</span><h3 id="observed-position">—</h3><p id="observed-context">Loading…</p></article><article class="panel history-modeled"><span class="small-label">CONDITIONAL MODEL</span><h3 id="modeled-position">—</h3><p id="modeled-context">Choose a recorded stop.</p></article></div>
+            <div class="panel history-explanation"><strong id="history-takeaway">Loading race history…</strong><p id="history-limits">The model holds other drivers' recorded times fixed. It cannot prove a different race result.</p></div>
+          </div>
+        </div>
+        <details class="history-classification panel"><summary>Recorded finishing order <span aria-hidden="true">↗</span></summary><div id="history-finishers"></div></details>
+      </section>
+
+      <section class="strategy-entry" id="strategy" aria-labelledby="strategy-title">
+        <details id="strategy-details"><summary class="strategy-summary"><span><span class="section-index">02 / STRATEGY LAB</span><strong id="strategy-title">Pit now or stay out?</strong><small>Compare two decisions against a chosen rival when you want more detail.</small></span><span class="summary-arrow" aria-hidden="true">↗</span></summary>
+          <div class="strategy-options"><div><span class="small-label">YOUR DRIVER</span><strong id="favorite-display">No driver pinned</strong><button type="button" id="pin-driver">Pin selected driver <span aria-hidden="true">↗</span></button></div><label class="switch-line" for="spoiler-toggle"><span>Spoiler shield · hide future stops in Strategy Lab</span><input id="spoiler-toggle" type="checkbox" checked><span class="switch-track" aria-hidden="true"></span></label></div>
+    <div class="modebar" role="tablist" aria-label="Data mode">
+      <button class="mode active" id="replay-tab" type="button" role="tab" aria-selected="true" aria-controls="replay-controls"><span class="mode-icon">↺</span> Race replay <span class="mode-sub">recorded lap data</span></button>
+      <button class="mode" id="manual-tab" type="button" role="tab" aria-selected="false" aria-controls="manual-controls"><span class="mode-icon">◉</span> During a race <span class="mode-sub">enter a live snapshot</span></button>
+      <div class="mode-meta" id="data-status">LOADING RACE HISTORY</div>
+    </div>
+
+    <div class="workspace">
+      <aside class="control-rail panel" aria-labelledby="setup-title">
+        <div class="panel-heading"><span class="section-index">02 / INPUTS</span><h2 id="setup-title">Set the scene</h2><p>Choose a moment, then tune the assumptions.</p></div>
+        <div id="replay-controls" class="control-section">
+          <div class="event-card"><span class="event-flag" aria-hidden="true">▥</span><div><small>RECORDED RACE</small><strong id="replay-event-title">Loading…</strong><span id="replay-event-meta">Lap times and positions from Jolpica</span></div></div>
+          <div class="field"><label for="lap">Race lap <output id="lap-output" for="lap">40 / 60</output></label><input id="lap" type="range" min="5" max="48" value="40"><div class="range-ends"><span>EARLY RACE</span><span>LATE RACE</span></div></div>
+          <div class="field"><label for="driver">Your driver</label><select id="driver"></select></div>
+          <div class="field"><label for="target">Rival to compare</label><select id="target"></select></div>
+          <div class="snapshot-strip" id="snapshot-strip" aria-live="polite"></div>
+        </div>
+        <div id="manual-controls" class="control-section" hidden>
+          <p class="manual-note">Enter numbers from the timing screen you are watching. This mode has no automatic live feed.</p>
+          <div class="field-pair"><div class="field"><label for="manual-lap">Current lap</label><input id="manual-lap" type="number" min="1" max="100" value="35"></div><div class="field"><label for="manual-total">Race laps</label><input id="manual-total" type="number" min="3" max="100" value="60"></div></div>
+          <div class="field-pair"><div class="field"><label for="manual-driver">Your driver code</label><input id="manual-driver" type="text" maxlength="8" value="NOR"></div><div class="field"><label for="manual-target">Rival code</label><input id="manual-target" type="text" maxlength="8" value="VER"></div></div>
+          <div class="field"><label for="manual-gap">Gap to rival <span class="help">+ behind / − ahead</span></label><div class="unit-input"><input id="manual-gap" type="number" step="0.1" value="4.2"><span>s</span></div></div>
+          <div class="field-pair"><div class="field"><label for="manual-driver-pace">Your recent pace</label><div class="unit-input"><input id="manual-driver-pace" type="number" min="30" max="180" step="0.001" value="82.100"><span>s/lap</span></div></div><div class="field"><label for="manual-target-pace">Rival's recent pace</label><div class="unit-input"><input id="manual-target-pace" type="number" min="30" max="180" step="0.001" value="82.400"><span>s/lap</span></div></div></div>
+          <div class="field"><label for="manual-condition">Track conditions</label><select id="manual-condition"><option value="green">Green flag · dry track</option><option value="safety-car">Safety car</option><option value="vsc">Virtual safety car</option><option value="rain">Rain or changing conditions</option><option value="red-flag">Red flag</option></select></div>
+        </div>
+        <div class="divider"></div>
+        <div class="control-section">
+          <div class="field"><label for="stay">Stay out before pitting <output id="stay-output" for="stay">5 laps</output></label><input id="stay" type="range" min="1" max="10" value="5"><div class="range-ends"><span>1 LAP</span><span>10 LAPS</span></div></div>
+          <div class="field-pair"><div class="field"><label for="pit-loss">Pit-lane loss</label><div class="unit-input"><input id="pit-loss" type="number" min="0" max="60" step="0.1" value="21.5"><span>s</span></div></div><div class="field"><label for="fresh-gain">Fresh tyre gain</label><div class="unit-input"><input id="fresh-gain" type="number" min="-3" max="5" step="0.1" value="0.8"><span>s/lap</span></div></div></div>
+          <div class="field"><label for="horizon">Compare across</label><select id="horizon"><option value="8">Next 8 laps</option><option value="12" selected>Next 12 laps</option><option value="16">Next 16 laps</option><option value="20">Next 20 laps</option></select></div>
+        </div>
+        <p class="rail-footnote">Pit loss is the total time lost versus a normal lap. Fresh tyre gain and degradation are assumptions you can change.</p>
+      </aside>
+
+      <section class="analysis-area" aria-labelledby="comparison-title">
+        <div class="result-head"><div><span class="section-index">03 / COMPARISON</span><h2 id="comparison-title">Two decisions. One race.</h2></div><span class="scenario-badge" id="scenario-badge"><span class="badge-dot"></span> CONDITIONAL ESTIMATE</span></div>
+        <div class="takeaway panel"><span class="takeaway-label">MODEL TAKEAWAY</span><p id="takeaway">Loading race data…</p><div class="takeaway-foot"><span id="advantage"></span><span id="model-status">Assumes green-flag running</span></div></div>
+        <div id="error" class="error" role="alert" hidden></div>
+        <div class="strategy-grid" id="strategy-grid">
+          <article class="strategy-card now-card"><div class="card-top"><span class="strategy-tag"><span class="tag-dot"></span> OPTION A</span><span class="card-symbol" aria-hidden="true">↘</span></div><h3>Pit now</h3><p>Take the stop on the next lap and run on fresh tyres.</p><div class="metric"><span>ESTIMATED REJOIN GAP</span><strong id="now-rejoin">—</strong></div><div class="metric secondary"><span>GAP AFTER HORIZON</span><strong id="now-finish">—</strong></div><div class="card-bottom" id="now-band">—</div></article>
+          <article class="strategy-card later-card"><div class="card-top"><span class="strategy-tag"><span class="tag-dot"></span> OPTION B</span><span class="card-symbol" aria-hidden="true">→</span></div><h3>Stay out <span id="later-laps">5</span> laps</h3><p>Run longer on current tyres, then stop.</p><div class="metric"><span>ESTIMATED REJOIN GAP</span><strong id="later-rejoin">—</strong></div><div class="metric secondary"><span>GAP AFTER HORIZON</span><strong id="later-finish">—</strong></div><div class="card-bottom" id="later-band">—</div></article>
+        </div>
+        <div class="chart-panel panel"><div class="chart-head"><div><span class="section-index">GAP EVOLUTION</span><h3>Where the time goes</h3></div><div class="legend"><span><i class="legend-now"></i> Pit now</span><span><i class="legend-later"></i> Stay out</span></div></div><div id="chart" class="chart" role="img" aria-label="Projected gap chart"></div><div class="chart-footer"><span>BEHIND RIVAL ↑</span><span>FUTURE LAPS →</span><span>AHEAD OF RIVAL ↓</span></div></div>
+      </section>
+    </div>
+
+    <section class="lower-grid" id="about">
+      <article class="panel evidence-panel"><div class="panel-heading"><span class="section-index">04 / EVIDENCE</span><h2>What this uses</h2></div><div id="evidence"></div><details><summary>Model assumptions and limits</summary><ul id="assumptions"></ul><p>The displayed range changes pit loss by ±2.5s and fresh tyre gain by ±0.25s/lap. It is a sensitivity check, not a confidence interval. A safety car, rain or traffic can change the decision entirely.</p></details><p class="source-credit">Recorded positions, laps and pit stops: Jolpica F1 API, CC BY-NC-SA 4.0. Strategy paths are conditional estimates, not recorded outcomes. No Formula 1 affiliation.</p></article>
+      <article class="panel assistant-panel"><div class="panel-heading"><span class="section-index">05 / ASK PITWALL</span><h2>Explore the choice</h2><p>Ask a follow-up about the current scenario.</p></div><div class="prompt-chips"><button type="button" data-question="Why pit now?">Why pit now?</button><button type="button" data-question="What does staying out gain?">What does staying out gain?</button><button type="button" data-question="What happened in the recorded race?">What happened in the recorded race?</button></div><div class="conversation" id="conversation" aria-live="polite"><div class="bubble answer">Choose a driver and rival, then ask about either decision. I use the numbers shown here and explain my assumptions.</div></div><form id="ask-form" class="ask-form"><label class="sr-only" for="question">Question for Pitwall</label><input id="question" type="text" placeholder="Ask about this strategy…" maxlength="180" autocomplete="off"><button type="submit" aria-label="Send question">↗</button></form><small class="assistant-limit">This release uses a deterministic explanation engine. It does not generate new race facts.</small></article>
+    </section>
+        </details>
+      </section>
+    </main>
+    <footer><span>PITWALL / RACE COMPANION</span><span>BUILT TO MAKE STRATEGY LEGIBLE.</span><a href="https://github.com/jolpica/jolpica-f1/blob/main/TERMS.md" target="_blank" rel="noopener noreferrer">RACE DATA TERMS ↗</a></footer>
+    <p class="legal">Unofficial fan project. Pitwall is not associated with or endorsed by the Formula 1 companies. F1, FORMULA 1, GRAND PRIX and related marks are trademarks of Formula One Licensing B.V.</p>
+  </div>
+</body>
+</html>

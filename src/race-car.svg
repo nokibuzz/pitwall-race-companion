@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" role="img" aria-labelledby="title desc">
+  <title id="title">Pitwall open-wheel race car</title>
+  <desc id="desc">Original illustration of a red single-seater racing car in motion.</desc>
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff5e5e"/><stop offset=".45" stop-color="#ea242d"/><stop offset="1" stop-color="#8b111b"/></linearGradient>
+    <linearGradient id="light" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#ff6d6d"/><stop offset="1" stop-color="#bd1722"/></linearGradient>
+    <linearGradient id="tyre" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#313b43"/><stop offset=".5" stop-color="#070a0d"/><stop offset="1" stop-color="#252e35"/></linearGradient>
+    <filter id="shadow"><feGaussianBlur stdDeviation="13"/></filter>
+  </defs>
+  <g opacity=".45" stroke="#d6222d" stroke-width="7" stroke-linecap="round"><path d="M68 305H300"/><path d="M35 322H260"/><path d="M100 337H340"/></g>
+  <ellipse cx="526" cy="328" rx="407" ry="28" fill="#050709" opacity=".75" filter="url(#shadow)"/>
+  <path d="M89 318h832" stroke="#f0f2f3" opacity=".16" stroke-width="2"/>
+  <g>
+    <circle cx="260" cy="283" r="73" fill="url(#tyre)"/><circle cx="260" cy="283" r="53" fill="none" stroke="#525b61" stroke-width="3"/><circle cx="260" cy="283" r="39" fill="#151b20" stroke="#939ca1" stroke-width="5"/><circle cx="260" cy="283" r="11" fill="#c51c27"/>
+    <circle cx="773" cy="283" r="71" fill="url(#tyre)"/><circle cx="773" cy="283" r="51" fill="none" stroke="#525b61" stroke-width="3"/><circle cx="773" cy="283" r="37" fill="#151b20" stroke="#939ca1" stroke-width="5"/><circle cx="773" cy="283" r="11" fill="#c51c27"/>
+    <g stroke="#f4f5f5" stroke-width="5" opacity=".7"><path d="M260 250v66M227 283h66M773 250v66M740 283h66"/></g>
+  </g>
+  <path d="M172 251l42-50 99-2 40 18 92-11 38-34 99-8 48 34 141 21 55 18 77 6 42 26-38 14-83-6-81-14-57 19H345l-61-19-70 15z" fill="url(#body)" stroke="#ff7376" stroke-width="2"/>
+  <path d="M341 220l116-8 41-39 87-5 40 37 132 16-39 18-234 12-101-12z" fill="#fa454c" opacity=".65"/>
+  <path d="M356 244h238l54 22-73 16H375l-49-23z" fill="#8f121b"/>
+  <path d="M415 234h141l-28 18H389z" fill="#161e24" opacity=".9"/>
+  <path d="M499 180l33-51 26-5 43 60z" fill="#111920" stroke="#505e66" stroke-width="4"/>
+  <path d="M533 174c10-32 16-38 34-39 17 1 28 16 29 40" fill="none" stroke="#10181e" stroke-width="12" stroke-linecap="round"/>
+  <path d="M548 150c7-14 19-19 31-13l7 13-10 16-19-2z" fill="#e9ebec" stroke="#181f25" stroke-width="3"/>
+  <path d="M554 151h31l-6 10h-27z" fill="#111920"/>
+  <path d="M614 199l31-15 58 16-25 10z" fill="#131b21"/>
+  <path d="M392 198l29-16 26 3-16 21z" fill="#131b21"/>
+  <path d="M113 182h87l12 12v66l-19-4-9-51-76-2z" fill="#b81722" stroke="#fa555a" stroke-width="3"/>
+  <path d="M107 174h106l14 16H102z" fill="#ef333b"/><path d="M101 190h120v13H103z" fill="#181f25"/>
+  <path d="M828 241h105l37 18-8 15-103-9-39-9z" fill="#c51a25" stroke="#ff676b" stroke-width="2"/>
+  <path d="M839 269h125l-20 13h-98z" fill="#151b20"/>
+  <path d="M346 256l-80 23m521-26 74 22" stroke="#111920" stroke-width="10"/>
+  <path d="M341 215l98-7 27-16 44-2" fill="none" stroke="#fff" stroke-width="3" opacity=".65"/>
+  <path d="M653 213h103" stroke="#fff" stroke-width="4" opacity=".45"/>
+  <text x="490" y="270" fill="#f7f8f8" font-family="Arial,sans-serif" font-size="22" font-weight="900" letter-spacing="2">PW</text>
+  <path d="M99 295h95M865 300h84" stroke="#e3e8e9" stroke-width="2" opacity=".45"/>
+</svg>

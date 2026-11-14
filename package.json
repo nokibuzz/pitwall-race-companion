@@ -1,0 +1,14 @@
+{
+  "name": "pitwall-race-companion",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/serve.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "refresh:history": "node scripts/build-history.mjs",
+    "refresh:current": "node scripts/refresh-current.mjs"
+  },
+  "engines": { "node": ">=22" }
+}
